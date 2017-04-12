@@ -1,0 +1,101 @@
+<div class='totusTuus'>
+     <!-- left side pane -->
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pane">
+    </div>
+    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 sect">
+        <div class="totusTuus">
+            <img class='scoville' alt='scoville scale' src='../assets/images/chart.png'>
+            <h1 id='mainHeader'>World Wings</h1>
+            <img class='pepper' alt='scoville scale' src='../assets/images/hotpeppers.jpg'>
+            <div id='addFlavor'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">ADD A FLAVOR</h3>
+                    </div>
+                    <div class="panel-body">
+                        <!-- form element required to add new flavor to page and sql database -->
+                        <form class="create-update-form flavorBody" action="/" method="POST">
+                            <div class="form-group">
+                                <label for="ca">Input Wing Flavor:</label>
+                                <button id='submitFlavor' type="submit">ADD FLAVOR</button>
+                                <input type="text" id="ca" name="name">
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" name="hungry" value="1" checked> Await Testing
+                                <input type="radio" name="hungry" value="0"> Consumed<br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br style='clear: both'>
+            <div class='capture'>
+                <div class='mainSection' id='eat'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">WING FLAVORS CONSUMED</h3>
+                        </div>
+                        <div class="panel-body">
+                           <!-- holds the dynamically generated list elements  -->
+                            <ul>
+                                {{#each wings}} {{#unless this.hungry}}
+                                <li class='eatList'>
+                                   <!-- this.name is the value grabbed from the user input  -->
+                                    <h4 class='landingFlavor'>{{this.name}}</h4>
+                                      <!-- this.id is needed to enable syncing with the sql database  -->
+                                    <form class='actionButton' action="/{{this.id}}?_method=PUT" method="POST">
+                                        <input type="hidden" name="hungry" value="true">
+                                        <button type="submit">stuffed</button>
+                                    </form>
+                                    {{> wings/delete-wing}}
+                                </li>
+                                {{/unless}} {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class='mainSection' id='eaten'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">WING FLAVORS READY TO BE TESTED</h3>
+                        </div>
+                        <div class="panel-body">
+                            <!-- holds the dynamically generated list elements  -->
+                            <ul>
+                                {{#each wings}} {{#if this.hungry}}
+                                <li class='eatenList'>
+                                  <!-- this.name is the value grabbed from the user input  -->
+                                    <h4 class='landingFlavor'>{{this.name}}</h4>
+                                    <!-- this.id is needed to enable syncing with the sql database  -->
+                                    <form class='actionButton' action="/{{this.id}}?_method=PUT" method="POST">
+                                        <input type="hidden" name="hungry" value="false">
+                                        <button type="submit">hungry</button>
+                                    </form>
+
+                                    {{> wings/delete-wing}}
+                                </li>
+                                {{/if}} {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- inline gif animations that span the bottom of the page -->
+        <div id="gifDiv">
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+            <img class='heat' alt='fire' src='../assets/images/fire.gif'>
+        </div>
+        <br><br><br>
+    </div>
+
+    <!-- right side pane -->
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 pane">
+    </div>
+</div>

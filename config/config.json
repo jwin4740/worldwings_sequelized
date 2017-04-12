@@ -1,0 +1,25 @@
+{
+    "development": {
+        "username": "root",
+        "password": "platinum",
+        "database": "ww2_db",
+        "port": "3306",
+        "dialect": "mysql",
+        "host": "localhost"
+    },
+    "test": {
+        "username": "root",
+        "password": "root",
+        "database": "trump_really",
+        "port": "3306",
+        "dialect": "mysql"
+    },
+    "production": {
+        "host": "wvulqmhjj9tbtc1w.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+        "username": "dlm4rgt37q308ite",
+        "password": "dayuxqnae55nyfwy",
+        "database": "wgbgjjdudztlge8l",
+        "dialect": "mysql",
+     
+    }
+}
